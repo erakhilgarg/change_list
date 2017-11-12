@@ -1,0 +1,35 @@
+{% extends "admin/change_list.html" %}
+{% block object-tools %}
+	<!-- Removed default Add button -->
+{% endblock %}
+
+{% block result_list %}
+<script>
+    function add_method()
+    {
+        window.location.href = 'add';
+    }
+
+    function delete_button()
+    {
+        form_ele = document.getElementById('changelist-form');
+        action_ref = form_ele.getElementsByTagName('select')[0];
+        action_ref.value = 'delete_selected';
+        form_ele.submit();
+    }
+</script>
+
+<input type="button" name="delete_selected" id="id_delete_selected" value="-Delete" onclick="delete_button()"/>
+<input type="button" name="add_node" id="id_node" value="+Add"/ onclick=add_method()>
+
+{{ block.super }}
+
+<script>
+    actions_div = document.getElementsByClassName('actions')[0];
+    actions_div.style.display = 'none';
+</script>
+
+{% endblock %}
+
+
+
